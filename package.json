@@ -14,7 +14,9 @@
     "parcel-bundler": "^1.12.5"
   },
   "dependencies": {
+    "qrcode": "^1.4.4",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "uuid": "^8.3.2"
   }
 }
