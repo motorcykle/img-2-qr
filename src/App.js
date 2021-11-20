@@ -11,7 +11,7 @@ const App = () => {
     <div className='app'>
       <img src={Logo} alt="" className='logo' />
 
-      <Getqr base64={base64} />
+      {base64 && <Getqr base64={base64} />}
 
       <Uploadimg setBase64={setBase64} />
 

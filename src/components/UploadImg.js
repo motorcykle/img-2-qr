@@ -3,6 +3,7 @@ import UploadIcon from '../../assets/upload-icon.png';
 
 const Uploadimg = ({ setBase64 }) => {
   const [img, setImg] = useState('');
+  const [uploadedImg, setUploadedImg] = useState(false);
   const inputRef = useRef(null);
 
   const setNewImg = (e) => {
@@ -17,6 +18,8 @@ const Uploadimg = ({ setBase64 }) => {
       reader.readAsDataURL(file);
     }
   }
+  
+  if (uploadedImg) return "";
 
   return (
     <div className="uploadImg">
@@ -24,7 +27,10 @@ const Uploadimg = ({ setBase64 }) => {
         <div className='uploaded-img'>
           <img src={img} alt="" />
           <div className="btns">
-            <button className='btn btn-create' onClick={() => setBase64(img)}>Create QR Code</button>
+            <button className='btn btn-create' onClick={() => {
+              setBase64(img);
+              setUploadedImg(true);
+            }}>Create QR Code</button>
             <button className='btn btn-delete' onClick={() => setImg('')}>Remove upload</button>
           </div>
         </div>

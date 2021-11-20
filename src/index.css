@@ -35,6 +35,7 @@
 }
 
 .uploaded-img .btns {
+  margin-top: 1em;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -84,4 +85,12 @@
   opacity: 0.5;
 }
 
+.getqr {
+  display: grid;
+  place-items: center;
+}
 
+.qr-img-download {
+  color: rgb(17, 17, 17);
+  font-size: 1.15rem;
+}
