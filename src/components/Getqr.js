@@ -14,7 +14,7 @@ const Getqr = ({ base64 }) => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': "Bearer ",
+          'Authorization': "Bearer ${process.env.REACT_APP_M3O_API_TOKEN}",
         },
         body: JSON.stringify({
           name: `${uuidName}.jpeg`,
