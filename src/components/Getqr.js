@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import QRCode from 'qrcode';
 import ClipLoader from "react-spinners/ClipLoader";
+import ImageKit from "imagekit";
 
 const Getqr = ({ base64 }) => {
   const [loading, setLoading] = useState(true);
@@ -10,29 +11,28 @@ const Getqr = ({ base64 }) => {
 
   useEffect(() => {
     if (base64) {
-      fetch('https://api.m3o.com/v1/image/Upload', {
+
+      fetch('https://api.imgur.com/3/image', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': "Bearer ${process.env.REACT_APP_M3O_API_TOKEN}",
+          'Authorization': `Client-ID ${process.env.REACT_APP_IMGUR_CLIENT_ID}`,
         },
         body: JSON.stringify({
-          name: `${uuidName}.jpeg`,
-          base64 
+          image: base64.split(',')[1]
         })
       })
       .then(res => res.json())
-      .then(({ url }) => {
-        QRCode.toDataURL(url)
+      .then(({ data: { link } }) => {
+        QRCode.toDataURL(link)
           .then(qrbase64 => {
             setQrImg(qrbase64);
             setLoading(false);
           })
           .catch(err => {
-            console.error(err)
+            alert(err.message)
           })
       })
-
 
     }
   }, [base64])
